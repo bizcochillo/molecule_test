@@ -1,0 +1,17 @@
+---
+driver:
+  name: default
+
+platforms:
+  - name: ubi10
+
+provisioner:
+  name: ansible
+
+scenario:
+  test_sequence:
+    - destroy
+    - create
+    - converge
+    - idempotence
+    - destroy

@@ -1,0 +1,19 @@
+---
+namespace: wzzrd
+name: molecule_test
+version: 1.0.0
+readme: README.md
+authors:
+  - wzzrd
+description: Ansible collection for testing Molecule
+license:
+  - GPL-2.0-or-later
+license_file: ''
+tags:
+  - linux
+dependencies: {}
+repository: http://example.com/repository
+documentation: http://docs.example.com
+homepage: http://example.com
+issues: http://example.com/issue/tracker
+build_ignore: []

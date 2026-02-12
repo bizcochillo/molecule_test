@@ -1,0 +1,26 @@
+---
+- name: Create
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create molecule instance
+      containers.podman.podman_container:
+        name: ubi10
+        image: registry.access.redhat.com/ubi10/ubi-init:latest
+        state: started
+        command: /sbin/init
+        privileged: true
+
+    - name: Write molecule instance config
+      ansible.builtin.copy:
+        content: "{{ instance_config | to_nice_yaml }}"
+        dest: "{{ molecule_instance_config }}"
+        mode: "0600"
+      vars:
+        instance_config:
+          - instance: ubi10
+            connection: containers.podman.podman
+            identity_file: ""
+            address: ""
+            user: ""
+              #port: ""
