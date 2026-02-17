@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: rhel9-remote  # Matches the inventory in molecule.yml
+  gather_facts: false   # Optional: speeds up test if you don't need facts
+  tasks:
+    - name: Include apache role
+      ansible.builtin.include_role:
+        name: wzzrd.molecule_test.apache

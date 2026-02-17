@@ -1,0 +1,49 @@
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Create Systemd Pod in OpenShift
+      kubernetes.core.k8s:
+        state: present
+        namespace: molecule-lab
+        definition:
+          apiVersion: v1
+          kind: Pod
+          metadata:
+            name: rhel10-remote
+            labels:
+              app: molecule-remote
+          spec:
+            containers:
+              - name: runner
+                image: registry.access.redhat.com/ubi10/ubi-init:latest
+                command: ["/sbin/init"]
+                securityContext:
+                  privileged: true
+                  capabilities:
+                    add: ["SYS_ADMIN"]
+                volumeMounts:
+                  - name: cgroup
+                    mountPath: /sys/fs/cgroup
+                    readOnly: false
+            volumes:
+              - name: cgroup
+                hostPath:
+                  path: /sys/fs/cgroup
+                  type: Directory
+            serviceAccountName: default
+
+    - name: Wait for Pod to be Running
+      kubernetes.core.k8s_info:
+        kind: Pod
+        namespace: molecule-lab
+        name: rhel10-remote
+      register: pod
+      until: 
+        - pod.resources is defined
+        - pod.resources | length > 0
+        - pod.resources[0].status.phase == 'Running'
+      retries: 30
+      delay: 5

@@ -1,0 +1,30 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: default # We bring our own create/destroy logic
+platforms:
+  - name: rhel10-remote
+provisioner:
+  name: ansible
+  env:
+    # Look for roles 3 levels up
+    ANSIBLE_ROLES_PATH: "../../../roles"
+  inventory:
+    hosts:
+      all:
+        hosts:
+          rhel9-remote:
+            # The Magic: Connect to the Pod via kubectl/oc exec
+            ansible_connection: kubernetes.core.kubectl
+            ansible_kubectl_namespace: molecule-lab
+            ansible_kubectl_pod: rhel10-remote
+            ansible_user: root
+verifier:
+  name: ansible
+scenario:
+  test_sequence:
+    - destroy
+    - create
+    - converge
+    - destroy

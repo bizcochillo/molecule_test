@@ -1,0 +1,13 @@
+---
+- name: Destroy
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Delete Pod
+      kubernetes.core.k8s:
+        kind: Pod
+        namespace: molecule-lab
+        name: rhel10-remote
+        state: absent
+        wait: true
