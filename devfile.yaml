@@ -22,8 +22,8 @@ components:
       cpuLimit: 2000m
       env:
         - name: HOME
-          value: "/projects/molecule_test"
+          value: "/projects/home"
         - name: VSCODE_DEFAULT_WORKSPACE
           value: "/projects/molecule_test/.code-workspace"
         - name: ANSIBLE_COLLECTIONS_PATH
-          value: "/projects/molecule_test/.ansible/collections:/usr/share/ansible/collections:/projects/molecule_test/collections"
+          value: "/projects/home/.ansible/collections:/usr/share/ansible/collections:/projects/molecule_test/collections"
