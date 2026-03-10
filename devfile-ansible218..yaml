@@ -15,7 +15,7 @@ projects:
 components:
   - name: dev-tools
     container:
-      image: quay.io/rh-ee-apalma/ansible-runtime:2.18
+      image: quay.io/wzzrd/dev-tools-maxim:latest
       memoryRequest: 512M
       memoryLimit: 8Gi
       cpuRequest: 250m

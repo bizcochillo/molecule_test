@@ -8,11 +8,11 @@
 	"settings": {
 		"workbench.colorTheme": "Solarized Light",
         "workbench.colorCustomizations": {
-            "titleBar.activeBackground": "#2e7d32",
+            "titleBar.activeBackground": "#00467f",
             "titleBar.activeForeground": "#ffffff",
-            "activityBar.background": "#1b5e20",
+            "activityBar.background": "#00335e",
             "activityBar.foreground": "#ffffff",
-            "statusBar.background": "#1b5e20"
+            "statusBar.background": "#00335e"
         },
 		"files.associations": {
 			"*.yaml": "ansible",

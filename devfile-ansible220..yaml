@@ -7,7 +7,7 @@ projects:
   - name: molecule-test
     git:
       remotes:
-        origin: https://github.com/wzzrd/molecule_test.git
+        origin: https://github.com/bizcochillo/molecule_test.git
       checkoutFrom:
         remote: origin
         revision: main
