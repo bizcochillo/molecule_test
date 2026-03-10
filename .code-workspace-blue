@@ -1,13 +1,13 @@
 {
 	"folders": [
 		{
-			"name": "Ansible 2.16 Environment",
+			"name": "Ansible 2.18 Environment",
 			"path": "/projects/molecule_test"
 		}
 	],
 	"settings": {
 		"workbench.colorTheme": "Solarized Light",
-		"workbench.colorCustomizations": {
+        "workbench.colorCustomizations": {
             "titleBar.activeBackground": "#2e7d32",
             "titleBar.activeForeground": "#ffffff",
             "activityBar.background": "#1b5e20",

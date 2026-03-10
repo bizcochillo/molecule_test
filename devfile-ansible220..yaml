@@ -24,6 +24,6 @@ components:
         - name: HOME
           value: "/projects/home"
         - name: VSCODE_DEFAULT_WORKSPACE
-          value: "/projects/molecule_test/.code-workspace"
+          value: "/projects/molecule_test/.code-workspace-purple"
         - name: ANSIBLE_COLLECTIONS_PATH
           value: "/projects/home/.ansible/collections:/usr/share/ansible/collections:/projects/molecule_test/collections"
