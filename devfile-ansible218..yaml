@@ -1,0 +1,29 @@
+schemaVersion: 2.2.0
+attributes:
+  controller.devfile.io/storage-type: per-workspace
+metadata:
+  name: molecule-test
+projects:
+  - name: molecule-test
+    git:
+      remotes:
+        origin: https://github.com/bizcochillo/molecule_test.git
+      checkoutFrom:
+        remote: origin
+        revision: main
+    clonePath: molecule_test
+components:
+  - name: dev-tools
+    container:
+      image: quay.io/rh-ee-apalma/ansible-runtime:2.18
+      memoryRequest: 512M
+      memoryLimit: 8Gi
+      cpuRequest: 250m
+      cpuLimit: 2000m
+      env:
+        - name: HOME
+          value: "/projects/home"
+        - name: VSCODE_DEFAULT_WORKSPACE
+          value: "/projects/molecule_test/.code-workspace"
+        - name: ANSIBLE_COLLECTIONS_PATH
+          value: "/projects/home/.ansible/collections:/usr/share/ansible/collections:/projects/molecule_test/collections"

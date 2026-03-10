@@ -1,5 +1,7 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal
 
+ARG ANSIBLE_VERSION=2.16.17
+ARG PYTHON_VERSION=3.11
 ENV HOME=/projects/home
 
 USER 0
@@ -9,14 +11,16 @@ COPY --chown=0:0 set-cgroups.sh /
 
 # Install base dependencies
 RUN microdnf --disableplugin=subscription-manager install -y procps-ng openssl git \
-        tar gzip zip xz shadow-utils bash podman podman-docker skopeo python3.11-pip \
-        python3.11-devel python3.11-requests jq wget which glibc-langpack-en \
+        tar gzip zip xz shadow-utils bash podman podman-docker skopeo python${PYTHON_VERSION}-pip \
+        python${PYTHON_VERSION}-devel python${PYTHON_VERSION}-requests jq wget which glibc-langpack-en \
         ca-certificates aardvark-dns fuse-overlayfs util-linux sudo ; \
 
     # Install ansible and related tools
-    pip-3.11 install --no-cache-dir ansible-core==2.16.17 molecule==25.12.0 \
+    pip-${PYTHON_VERSION} install --no-cache-dir ansible-core==${ANSIBLE_VERSION} molecule==25.12.0 \
     molecule-plugins==25.8.12 ansible-lint==26.1.1 ansible-creator==25.12.0 \
-    ansible-builder==3.1.1; \
+    ansible-builder==3.1.1 \
+    tox \
+    pytest; \
 
     # Update complete image and cleanup
     microdnf update -y ; \
